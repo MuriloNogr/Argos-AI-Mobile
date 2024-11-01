@@ -11,21 +11,27 @@ import com.examplo.argos.data.repository.ProdutoRepository
 import kotlinx.coroutines.launch
 
 @Composable
-fun AddProdutoScreen(navController: NavHostController, repository: ProdutoRepository) {
+fun EditProdutoScreen(navController: NavHostController, repository: ProdutoRepository, produtoId: Long) {
     var nome by remember { mutableStateOf("") }
     var descricao by remember { mutableStateOf("") }
     var quantidade by remember { mutableStateOf("") }
     var preco by remember { mutableStateOf("") }
     var imagem by remember { mutableStateOf("") }
-    var errorMessage by remember { mutableStateOf("") }
 
     val coroutineScope = rememberCoroutineScope()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
+    LaunchedEffect(Unit) {
+        coroutineScope.launch {
+            val produto = repository.getProdutoById(produtoId)
+            nome = produto.nome
+            descricao = produto.descricao
+            quantidade = produto.quantidade.toString()
+            preco = produto.preco.toString()
+            imagem = produto.imagem
+        }
+    }
+
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         TextField(
             value = nome,
             onValueChange = { nome = it },
@@ -66,32 +72,21 @@ fun AddProdutoScreen(navController: NavHostController, repository: ProdutoReposi
         Button(
             onClick = {
                 coroutineScope.launch {
-                    try {
-                        val produto = ProdutoDto(
-                            nome = nome,
-                            descricao = descricao,
-                            quantidade = quantidade.toIntOrNull() ?: 0,
-                            preco = preco.toDoubleOrNull() ?: 0.0,
-                            imagem = imagem
-                        )
-                        repository.createProduto(produto)
-                        navController.popBackStack()
-                    } catch (e: Exception) {
-                        errorMessage = "Erro ao adicionar produto. Verifique os dados e tente novamente."
-                    }
+                    val produtoDto = ProdutoDto(
+                        id = produtoId,
+                        nome = nome,
+                        descricao = descricao,
+                        quantidade = quantidade.toIntOrNull() ?: 0,
+                        preco = preco.toDoubleOrNull() ?: 0.0,
+                        imagem = imagem
+                    )
+                    repository.updateProduto(produtoId, produtoDto)
+                    navController.popBackStack()
                 }
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Salvar Produto")
-        }
-
-        if (errorMessage.isNotEmpty()) {
-            Text(
-                text = errorMessage,
-                color = MaterialTheme.colorScheme.error,
-                modifier = Modifier.padding(top = 8.dp)
-            )
+            Text("Salvar Alterações")
         }
     }
 }

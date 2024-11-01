@@ -1,39 +1,37 @@
 package com.examplo.argos.data.network
 
-import com.examplo.argos.data.models.Cliente
-import com.examplo.argos.data.models.Produto
+import com.examplo.argos.data.dto.ClienteDto
+import com.examplo.argos.data.dto.ProdutoDto
 import retrofit2.http.*
 
 interface ArgosApi {
-
-    // Clientes endpoints
     @GET("/api/clientes")
-    suspend fun getClientes(): List<Cliente>
+    suspend fun getClientes(): List<ClienteDto>
 
     @GET("/api/clientes/{id}")
-    suspend fun getCliente(@Path("id") id: Long): Cliente
+    suspend fun getClienteById(@Path("id") id: Long): ClienteDto
 
     @POST("/api/clientes")
-    suspend fun createCliente(@Body cliente: Cliente): Cliente
+    suspend fun createCliente(@Body cliente: ClienteDto)
 
     @PUT("/api/clientes/{id}")
-    suspend fun updateCliente(@Path("id") id: Long, @Body cliente: Cliente): Cliente
+    suspend fun updateCliente(@Path("id") id: Long, @Body cliente: ClienteDto): ClienteDto
 
     @DELETE("/api/clientes/{id}")
     suspend fun deleteCliente(@Path("id") id: Long)
 
-    // Produtos endpoints
+    // Endpoints de Produtos
     @GET("/api/produtos")
-    suspend fun getProdutos(): List<Produto>
+    suspend fun getProdutos(): List<ProdutoDto>  // Deve retornar List<ProdutoDto>
 
     @GET("/api/produtos/{id}")
-    suspend fun getProduto(@Path("id") id: Long): Produto
+    suspend fun getProdutoById(@Path("id") id: Long): ProdutoDto
 
     @POST("/api/produtos")
-    suspend fun addProduto(@Body produto: Produto): Produto
+    suspend fun createProduto(@Body produto: ProdutoDto): ProdutoDto
 
     @PUT("/api/produtos/{id}")
-    suspend fun updateProduto(@Path("id") id: Long, @Body produto: Produto): Produto
+    suspend fun updateProduto(@Path("id") id: Long, @Body produto: ProdutoDto): ProdutoDto
 
     @DELETE("/api/produtos/{id}")
     suspend fun deleteProduto(@Path("id") id: Long)

@@ -73,6 +73,8 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.5")
     implementation("androidx.activity:activity-compose:1.9.2")
+    implementation("androidx.datastore:datastore-core-android:1.1.1")
+    implementation("androidx.datastore:datastore-preferences-core-jvm:1.1.1")
 
     // Testes
     testImplementation("junit:junit:4.13.2")
@@ -82,4 +84,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation ("androidx.datastore:datastore-preferences:1.1.1")
+    implementation ("androidx.datastore:datastore-core:1.1.1")
+    implementation("io.coil-kt:coil-compose:2.0.0")
 }
