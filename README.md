@@ -87,3 +87,9 @@
 
 ![ArgosMobileUml (1)](https://github.com/user-attachments/assets/7c2b5c95-9a10-491f-924a-966cd3daef56)
 
+## Contribuidores
+- **Luis Fernando Menezes Zampar** - RM 550531
+- **Diogo Fagioli Bombonatti** - RM 551694
+- **Murilo Nogueira** - RM 89162
+- **Gabriel Galdino da Silva** - RM 550711
+
