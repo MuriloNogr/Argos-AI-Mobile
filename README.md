@@ -1,4 +1,7 @@
 
+![ArgosAIMainLogo](https://github.com/user-attachments/assets/c109dbf8-21cb-4981-8d42-562ad6e5b8f7)
+
+
 # ArgosApp
 
 **ArgosApp** é um aplicativo Android que facilita o gerenciamento de clientes e produtos, permitindo operações de CRUD (criação, leitura, atualização e exclusão) com sincronização local. Desenvolvido em Kotlin e Jetpack Compose, ele utiliza o Retrofit para comunicação com uma API e DataStore para armazenamento local de dados.
